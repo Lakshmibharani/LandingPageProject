@@ -42,6 +42,7 @@ function sectionList() {
         toplistitem.innerText = item.dataset.nav;
         toplistitem.addEventListener('click', function() {
             item.scrollIntoView({behavior: "smooth" })
+            toplistitem.id = "nav-"+item.id;
         })
         topmenu.appendChild(toplistitem);
     };
@@ -55,11 +56,14 @@ function setActive() {
     window.addEventListener('scroll',function(event) {
         for (let i = 1; i <= sections.length; i++) {
             let section = document.getElementById(`section${i}`);
-            const itemId= document.getElementById(`nav${i}`);
+            const itemId= document.getElementById(`nav-section${i}`);
             
-            if (section.getBoundingClientRect().top < window.innerHeight 
-            && section.getBoundingClientRect().bottom >=  150
-            && section.getBoundingClientRect().top <= 150) 
+            if (section.getBoundingClientRect().top >= 0 &&
+            section.getBoundingClientRect().left >= 0 &&
+            section.getBoundingClientRect().bottom <=
+              (window.innerHeight || document.documentElement.clientHeight) &&
+            section.getBoundingClientRect().right <=
+              (window.innerWidth || document.documentElement.clientWidth)) 
             {
             itemId.classList.add(activeclass);
             section.classList.add(activeclass);
@@ -73,8 +77,6 @@ function setActive() {
     
     });
 };
-
-
 // Scroll to anchor ID using scrollTO event
 document.addEventListener("scroll", function() {
     setActive();
