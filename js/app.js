@@ -58,12 +58,15 @@ function setActive() {
             let section = document.getElementById(`section${i}`);
             const itemId= document.getElementById(`nav-section${i}`);
             
-            if (section.getBoundingClientRect().top >= 0 &&
-            section.getBoundingClientRect().left >= 0 &&
-            section.getBoundingClientRect().bottom <=
-              (window.innerHeight || document.documentElement.clientHeight) &&
-            section.getBoundingClientRect().right <=
-              (window.innerWidth || document.documentElement.clientWidth)) 
+            
+            if (
+              section.getBoundingClientRect().top >= 0 &&
+              section.getBoundingClientRect().left >= 0 &&
+              section.getBoundingClientRect().bottom <=
+                (window.innerHeight || document.documentElement.clientHeight) &&
+              section.getBoundingClientRect().right <=
+                (window.innerWidth || document.documentElement.clientWidth)
+            ) 
             {
             itemId.classList.add(activeclass);
             section.classList.add(activeclass);
